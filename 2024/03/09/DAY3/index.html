@@ -26,8 +26,9 @@
 <meta property="og:description" content="我有个部署在github仓库里的个人博客，网页前端用hexo框架，用typora编辑器进行md格式的写作，上传md文件生成网页，但是我的md文件里贴了大量的图片，比如说这种，如何让这些在本地的图片自动跟着我的md文件一起上传为了让本地的图片能够与Markdown文件一起上传，并且能够在GitHub Pages上的个人博客中正确显示，你需要采取以下步骤：  将图片移动到项目仓库中：首先，你需要将所有">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="c:\Users\14097\AppData\Roaming\Typora\typora-user-images\image-20240308184049708.png">
+<meta property="og:image" content="c:\Users\14097\AppData\Roaming\Typora\typora-user-images\image-20240309112717007.png">
 <meta property="article:published_time" content="2024-03-09T01:34:49.000Z">
-<meta property="article:modified_time" content="2024-03-09T03:15:09.532Z">
+<meta property="article:modified_time" content="2024-03-09T03:27:44.674Z">
 <meta property="article:author" content="LT">
 <meta property="article:tag" content="学习日寄">
 <meta name="twitter:card" content="summary_large_image">
@@ -239,7 +240,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.8k 字
+          5.1k 字
         
       </span>
     
@@ -250,7 +251,7 @@
         
         
         
-          32 分钟
+          43 分钟
         
       </span>
     
@@ -414,7 +415,42 @@
 <li>完成网站的静态内容生成后，运行<code>hexo d</code>来部署这些内容到指定的服务器上，例如GitHub Pages。</li>
 </ol>
 <p>如果你已经配置了Hexo的一键部署功能，在运行<code>hexo d</code>时，Hexo会自动将<code>public</code>目录中的内容推送到远程仓库，网站即会相应更新。</p>
-<h3 id="请记住，每次对博客内容做出更改，比如添加或编辑文章，或者更改图像等，你都需要运行这两个命令以确保你的更改被应用并展示在你的线上博客中。"><a href="#请记住，每次对博客内容做出更改，比如添加或编辑文章，或者更改图像等，你都需要运行这两个命令以确保你的更改被应用并展示在你的线上博客中。" class="headerlink" title="请记住，每次对博客内容做出更改，比如添加或编辑文章，或者更改图像等，你都需要运行这两个命令以确保你的更改被应用并展示在你的线上博客中。"></a>请记住，每次对博客内容做出更改，比如添加或编辑文章，或者更改图像等，你都需要运行这两个命令以确保你的更改被应用并展示在你的线上博客中。</h3>
+<p>请记住，每次对博客内容做出更改，比如添加或编辑文章，或者更改图像等，你都需要运行这两个命令以确保你的更改被应用并展示在你的线上博客中。</p>
+<h3 id="error-cannot-spawn-git-hooks-pre-commit-No-such-file-or-directory-Everything-up-to-date-branch-‘master’-set-up-to-track-‘-x67-x69-x74-x40-103-x69-x74-x68-x75-98-46-99-x6f-x6d-ltspace-ltspace-github-io-git-master’"><a href="#error-cannot-spawn-git-hooks-pre-commit-No-such-file-or-directory-Everything-up-to-date-branch-‘master’-set-up-to-track-‘-x67-x69-x74-x40-103-x69-x74-x68-x75-98-46-99-x6f-x6d-ltspace-ltspace-github-io-git-master’" class="headerlink" title="error: cannot spawn .git&#x2F;hooks&#x2F;pre-commit: No such file or directory Everything up-to-date branch ‘master’ set up to track ‘&#x67;&#x69;&#x74;&#x40;&#103;&#x69;&#x74;&#x68;&#x75;&#98;&#46;&#99;&#x6f;&#x6d;:ltspace&#x2F;ltspace.github.io.git&#x2F;master’."></a>error: cannot spawn .git&#x2F;hooks&#x2F;pre-commit: No such file or directory Everything up-to-date branch ‘master’ set up to track ‘<a href="mailto:&#x67;&#x69;&#x74;&#x40;&#103;&#x69;&#x74;&#x68;&#x75;&#98;&#46;&#99;&#x6f;&#x6d;">&#x67;&#x69;&#x74;&#x40;&#103;&#x69;&#x74;&#x68;&#x75;&#98;&#46;&#99;&#x6f;&#x6d;</a>:ltspace&#x2F;ltspace.github.io.git&#x2F;master’.</h3><p>这个错误信息表明Git在尝试执行<code>pre-commit</code>钩子时没有找到这个文件，这可能是由于以下几个原因造成的：</p>
+<ol>
+<li><code>pre-commit</code>钩子文件可能没有正确放置在<code>.git/hooks</code>目录中。</li>
+<li><code>pre-commit</code>文件可能没有执行权限（在Windows环境下通常不需要设置执行权限，但有时可能受特定的环境配置影响）。</li>
+<li>如果你使用Windows，并且手动创建了<code>pre-commit</code>文件，可能会不知不觉地给文件加上了默认的<code>.txt</code>等扩展名。</li>
+</ol>
+<p>针对以上情况，请检查以下几点：</p>
+<ul>
+<li>确认<code>pre-commit</code>文件位于正确的目录：<code>.git/hooks</code>。</li>
+<li>确认文件名确实是<code>pre-commit</code>，没有隐藏的扩展名。在Windows文件资源管理器中查看文件名时，要确保设置允许显示已知文件类型的扩展名。</li>
+<li>如果是通过文本编辑器创建的钩子脚本，确保在保存时选择“所有文件”类型，以避免自动添加扩展名。</li>
+<li>尝试直接在命令行中执行<code>pre-commit</code>钩子脚本来看是否能正确运行。如果不能，可能是脚本本身存在问题，或者你的环境中没有安装Python或者脚本的执行路径不对（在脚本的开头<code>#!/bin/sh</code>可能需要指向正确的shell路径，这在Windows中通常不是必须的，但是依赖于你的环境配置）。</li>
+</ul>
+<p>如果上述都没问题，你可以尝试删除<code>pre-commit</code>钩子并重新创建它。如果错误仍然存在，那么需要对你的Git安装和配置环境做更深入的查看。在极端情况下，你可能需要重新安装Git或者调查是否有其它系统级的问题影响到了Git钩子的执行。</p>
+<h3 id="我的git仓库里-git的名字是-deploy-git，是这个的原因吗"><a href="#我的git仓库里-git的名字是-deploy-git，是这个的原因吗" class="headerlink" title="我的git仓库里.git的名字是.deploy_git，是这个的原因吗"></a>我的git仓库里.git的名字是.deploy_git，是这个的原因吗</h3><p>如果你的 <code>.git</code> 文件夹的名字被改为了 <code>.deploy_git</code>，那很有可能是使用了Hexo的部署机制，特别是当采用<code>hexo-deployer-git</code>插件时，它会创建一个<code>.deploy_git</code>目录用来作为Git部署仓库。这个目录用于存储生成的静态文件，并将其推送到远程仓库，比如GitHub Pages。</p>
+<p><code>.deploy_git</code>目录与你本地编辑文档的Git仓库（通常用<code>.git</code>目录来管理）是分开的。Git钩子需要放在实际的Git仓库的<code>.git/hooks</code>目录中。如果你将钩子脚本放到了<code>.deploy_git</code>目录，那么它不会在你的常规Git操作中被触发。</p>
+<p>解决方法如下：</p>
+<ol>
+<li>确认你的本地仓库（包含你编辑的源文件）的<code>.git</code>目录。它应该是你项目根目录的<code>.git</code>文件夹，而不是Hexo生成的<code>.deploy_git</code>文件夹。</li>
+<li>将你的<code>pre-commit</code>钩子脚本放入你项目根目录下的<code>.git/hooks</code>目录中。</li>
+<li>确保<code>pre-commit</code>钩子脚本具有正确的内容，并且能够在你尝试提交到你的源代码仓库时被触发。</li>
+</ol>
+<p>如果你尝试修改你的源代码并提交（例如使用<code>git commit</code>命令），那么钩子脚本应该在你项目的<code>.git/hooks</code>目录中被触发。如果你仅仅使用<code>hexo deploy</code>命令部署网站，它是不会触发这个钩子的，因为这通常会直接向<code>.deploy_git</code>仓库提交。</p>
+<h3 id="不对，我发现我的-depoly-git里还有一个-git文件夹-这个文件夹又是干什么的"><a href="#不对，我发现我的-depoly-git里还有一个-git文件夹-这个文件夹又是干什么的" class="headerlink" title="不对，我发现我的.depoly_git里还有一个.git文件夹 这个文件夹又是干什么的"></a>不对，我发现我的.depoly_git里还有一个.git文件夹 这个文件夹又是干什么的</h3><p>在Hexo项目中，<code>.deploy_git</code>文件夹是用于存储Hexo生成的静态文件以便部署到远程服务器的地方。当你使用<code>hexo-deployer-git</code>插件进行部署时，Hexo会将<code>public</code>目录中生成的静态文件复制到<code>.deploy_git</code>目录，并在该目录初始化一个新的Git仓库用于部署。</p>
+<p><code>.deploy_git</code>目录中的<code>.git</code>文件夹是这个用于部署的Git仓库的元数据存储位置，其中包含了版本控制的相关信息，如分支、提交历史、配置等。实际上，<code>.deploy_git</code>目录本身就像是一个完整的Git仓库。</p>
+<p>当你执行<code>hexo deploy</code>命令时，以下步骤会被触发：</p>
+<ol>
+<li>Hexo调用<code>hexo generate</code>生成静态文件。</li>
+<li>生成的静态文件被复制到<code>.deploy_git</code>目录。</li>
+<li>在<code>.deploy_git</code>目录执行Git命令，将变更添加(commit)到本地仓库，并将其推送(push)到远程服务器（如GitHub Pages或其他托管服务）。</li>
+</ol>
+<p><code>.git</code>文件夹在<code>.deploy_git</code>目录中的作用是管理这一部署过程中所有的Git操作和历史记录。</p>
+<p>如果你在尝试运行Git钩子时遇到问题，请确保钩子被放置于你的源代码仓库的<code>.git/hooks</code>目录中，而不是<code>.deploy_git</code>目录或其内的<code>.git</code>目录中。这样，当你操作源代码仓库时（比如执行<code>git commit</code>），钩子才会被正确触发。</p>
+<p><img src="C:\Users\14097\AppData\Roaming\Typora\typora-user-images\image-20240309112717007.png" srcset="/img/loading.gif" lazyload alt="image-20240309112717007"></p>
+
                 
               </div>
             

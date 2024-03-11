@@ -1,0 +1,863 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.jpg">
+  <link rel="icon" href="/img/icon.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#181c27">
+  <meta name="author" content="LT">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="图像预处理：  裁剪图像：如有需要，可以裁剪原始图像，分离出单个工件。 增强对比度：通过调整亮度和对比度凸显毛刺与工件表面的差异。 去噪：使用滤波器减少或消除图像噪声，如高斯模糊、中值滤波等。  分割工件：  阈值分离：使用全局或自适应阈值分离工件与背景。 边缘检测：应用如Canny、Sobel等算法检测工件边缘。 区域生长或轮廓搜寻：依据边缘信息寻找单独工件的轮廓。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DAY5日寄-数据标注-力扣刷题-PCB布局">
+<meta property="og:url" content="http://example.com/2024/03/11/DAY5/index.html">
+<meta property="og:site_name" content="LTSpace">
+<meta property="og:description" content="图像预处理：  裁剪图像：如有需要，可以裁剪原始图像，分离出单个工件。 增强对比度：通过调整亮度和对比度凸显毛刺与工件表面的差异。 去噪：使用滤波器减少或消除图像噪声，如高斯模糊、中值滤波等。  分割工件：  阈值分离：使用全局或自适应阈值分离工件与背景。 边缘检测：应用如Canny、Sobel等算法检测工件边缘。 区域生长或轮廓搜寻：依据边缘信息寻找单独工件的轮廓。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/images/image-20240311103057188.png">
+<meta property="og:image" content="http://example.com/images/image-20240311184429988.png">
+<meta property="og:image" content="http://example.com/images/image-20240311200129691.png">
+<meta property="og:image" content="http://example.com/images/image-20240311201533870.png">
+<meta property="og:image" content="http://example.com/images/image-20240311202006704.png">
+<meta property="og:image" content="http://example.com/images/image-20240311201954203.png">
+<meta property="og:image" content="http://example.com/images/image-20240311203027539.png">
+<meta property="og:image" content="http://example.com/images/image-20240311203944816.png">
+<meta property="og:image" content="http://example.com/images/image-20240311204658768.png">
+<meta property="og:image" content="http://example.com/images/image-20240311210030212.png">
+<meta property="og:image" content="http://example.com/images/image-20240311210047560.png">
+<meta property="og:image" content="http://example.com/images/image-20240311220549604.png">
+<meta property="article:published_time" content="2024-03-11T01:02:09.000Z">
+<meta property="article:modified_time" content="2024-03-11T14:08:31.694Z">
+<meta property="article:author" content="LT">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/images/image-20240311103057188.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>DAY5日寄-数据标注-力扣刷题-PCB布局 - LTSpace</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":60,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>LT&#39;s space</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/back1.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">DAY5日寄-数据标注-力扣刷题-PCB布局</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-03-11 09:02" pubdate>
+          2024年3月11日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          17 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">DAY5日寄-数据标注-力扣刷题-PCB布局</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <ol type="1">
+<li><strong>图像预处理</strong>：
+<ul>
+<li>裁剪图像：如有需要，可以裁剪原始图像，分离出单个工件。</li>
+<li>增强对比度：通过调整亮度和对比度凸显毛刺与工件表面的差异。</li>
+<li>去噪：使用滤波器减少或消除图像噪声，如高斯模糊、中值滤波等。</li>
+</ul></li>
+<li><strong>分割工件</strong>：
+<ul>
+<li>阈值分离：使用全局或自适应阈值分离工件与背景。</li>
+<li>边缘检测：应用如Canny、Sobel等算法检测工件边缘。</li>
+<li>区域生长或轮廓搜寻：依据边缘信息寻找单独工件的轮廓。</li>
+</ul></li>
+<li><strong>特征提取</strong>：
+<ul>
+<li>形状分析：提取工件的几何形状特征来识别是否存在毛刺。</li>
+<li>纹理分析：检查毛刺区域的纹理变化，毛刺可能导致纹理不连续。</li>
+</ul></li>
+<li><strong>毛刺检测</strong>：
+<ul>
+<li>串标定位：利用形状或纹理特征定位可能的毛刺区域。</li>
+<li>模式识别：使用机器学习或深度学习模型（如卷积神经网络）来分类和识别含有毛刺的区域。</li>
+</ul></li>
+<li><strong>后处理</strong>：
+<ul>
+<li>结果评价：分析检测结果，评价毛刺的位置、大小和严重程度。</li>
+<li>结果优化：根据评价结果调整算法参数，以提高检测的准确率和可靠性。</li>
+</ul></li>
+<li><strong>软件实现</strong>：
+<ul>
+<li>编写代码：根据所选择的算法使用编程语言（例如Python、C++）和图像处理库（如OpenCV）编写代码。</li>
+<li>测试验证：在多个图像上测试你的代码，验证检测的准确性和效率。</li>
+</ul></li>
+</ol>
+<figure>
+<img src="/images/image-20240311103057188.png" srcset="/img/loading.gif" lazyload
+alt="image-20240311103057188" />
+<figcaption aria-hidden="true">image-20240311103057188</figcaption>
+</figure>
+<p>只能手动套索分割，这下真成数据分割女工了</p>
+<p>早知道当初拍照的时候就不图方便放在一起了</p>
+<p>的研究兴趣包括：</p>
+<ol type="1">
+<li><strong>多模态数据建模和下一代人机界面的基础模型应用</strong></li>
+<li><strong>时间序列和序列数据上的机器学习</strong></li>
+<li><strong>基于大型语言模型的自主决策代理</strong></li>
+</ol>
+<p>他的研究涉及到机器学习和强化学习在数据科学中的应用，所以如果您在这些方面有研究兴趣和实力，特别是对时间序列和序列数据相关的研究感兴趣，或者对如脑机界面、医疗保健、金融和推荐系统等领域的应用感兴趣，那么与合作研究可能非常适合您。</p>
+<h3
+id="检测一个整个文件夹中所有图像是否为rgb格式">检测一个整个文件夹中所有图像是否为RGB格式</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> os<br><span class="hljs-keyword">from</span> PIL <span class="hljs-keyword">import</span> Image<br><br><span class="hljs-comment"># 替换为你的文件夹路径</span><br>folder_path = <span class="hljs-string">&#x27;D:\\QQ\\QQ数据\\1409757351\\FileRecv\\test(1)\\test\\11\\vott-json-export&#x27;</span><br><br><span class="hljs-comment"># 列出文件夹中的所有文件</span><br>files = os.listdir(folder_path)<br><br><span class="hljs-comment"># 遍历文件检查每个图像</span><br><span class="hljs-keyword">for</span> file <span class="hljs-keyword">in</span> files:<br>    <span class="hljs-comment"># 构建完整的文件路径</span><br>    file_path = os.path.join(folder_path, file)<br>    <span class="hljs-comment"># 确保是文件且符合图像格式</span><br>    <span class="hljs-keyword">if</span> os.path.isfile(file_path) <span class="hljs-keyword">and</span> file_path.lower().endswith((<span class="hljs-string">&#x27;.png&#x27;</span>, <span class="hljs-string">&#x27;.jpg&#x27;</span>, <span class="hljs-string">&#x27;.jpeg&#x27;</span>)):<br>        <span class="hljs-comment"># 打开图像</span><br>        image = Image.<span class="hljs-built_in">open</span>(file_path)<br>        <br>        <span class="hljs-comment"># 检查图像模式</span><br>        <span class="hljs-keyword">if</span> image.mode == <span class="hljs-string">&#x27;RGB&#x27;</span>:<br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;图像 &quot;<span class="hljs-subst">&#123;file&#125;</span>&quot; 是三通道RGB格式。&#x27;</span>)<br>        <span class="hljs-keyword">else</span>:<br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;图像 &quot;<span class="hljs-subst">&#123;file&#125;</span>&quot; 不是三通道RGB格式。当前格式为: <span class="hljs-subst">&#123;image.mode&#125;</span>&#x27;</span>)<br>            <span class="hljs-comment"># 如果需要将非RGB图像转换为RGB</span><br>            image = image.convert(<span class="hljs-string">&#x27;RGB&#x27;</span>)<br>            image.save(file_path)  <span class="hljs-comment"># 保存转换后的图像</span><br></code></pre></td></tr></table></figure>
+<h3 id="双指针移除元素">双指针移除元素</h3>
+<p>由于题目要求删除数组中等于 valval
+的元素，因此输出数组的长度一定小于等于输入数组的长度，我们可以把输出的数组直接写在输入数组上。可以使用双指针：右指针
+rightright 指向当前将要处理的元素，左指针 leftleft
+指向下一个将要赋值的位置。</p>
+<p>如果右指针指向的元素不等于
+valval，它一定是输出数组的一个元素，我们就将右指针指向的元素复制到左指针位置，然后将左右指针同时右移；</p>
+<p>如果右指针指向的元素等于
+valval，它不能在输出数组里，此时左指针不动，右指针右移一位。</p>
+<p>整个过程保持不变的性质是：区间 [0,left)[0,)[0,left) 中的元素都不等于
+valval。当左右指针遍历完输入数组以后，leftleft
+的值就是输出数组的长度。</p>
+<p>这样的算法在最坏情况下（输入数组中没有元素等于
+valval），左右指针各遍历了数组一次。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">removeElement</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums, <span class="hljs-type">int</span> val)</span> </span><br><span class="hljs-function">    </span>&#123;<br>        <span class="hljs-type">int</span> left=<span class="hljs-number">0</span>,right=<span class="hljs-number">0</span>;<br>        <span class="hljs-type">int</span> oldlength=nums.<span class="hljs-built_in">size</span>();<br>        <span class="hljs-keyword">while</span>(right&lt;oldlength)<br>        &#123;<br>            <span class="hljs-keyword">if</span>(nums[right]!=val)<br>            &#123;<br>                nums[left]=nums[right];<br>                left++;<br>            &#125;<br>            right++;<br>        &#125;<br>        <span class="hljs-keyword">return</span> left;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<h3 id="原地删除重复项">原地删除重复项</h3>
+<p>while 右指针小于数组长度</p>
+<p>if 左指针和右指针相等</p>
+<p>右指针加一，左指针不变</p>
+<p>else 左右指针不相等</p>
+<p>左指针加一，左指针等于右指针</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-type">int</span> left=<span class="hljs-number">0</span>,right=<span class="hljs-number">0</span>;<br>      <span class="hljs-type">int</span> length=nums.<span class="hljs-built_in">size</span>();<br>      <span class="hljs-keyword">while</span>(right&lt;length)<br>      &#123;<br>           <span class="hljs-keyword">if</span>(nums[left]==nums[right])<br>               right++;<br>           <span class="hljs-keyword">else</span><br>               &#123;<br>                   left++;<br>                   nums[left]=nums[right];<br>               &#125;<br>      &#125; <br>      <span class="hljs-keyword">return</span> ++left;<br>   &#125;<br></code></pre></td></tr></table></figure>
+<figure>
+<img src="/images/image-20240311184429988.png" srcset="/img/loading.gif" lazyload
+alt="image-20240311184429988" />
+<figcaption aria-hidden="true">image-20240311184429988</figcaption>
+</figure>
+<p>庆祝我人生中第一道自己做出来的力扣easy题🥹</p>
+<h3 id="验证回文串">验证回文串：</h3>
+<p>大写转小写：ascii码</p>
+<p>移除非数字字母字符：</p>
+<p>reverse 看对不对</p>
+<p>主要就是考察C++字符串处理的库函数的应用</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-built_in">isalnum</span>(c)  <span class="hljs-comment">// 当是字母或数字时为真</span><br><span class="hljs-built_in">isalpha</span>(c)  <span class="hljs-comment">// 当是字母时为真</span><br><span class="hljs-built_in">isdigit</span>(c)  <span class="hljs-comment">// 当是数字是为真</span><br><span class="hljs-built_in">islower</span>(c)  <span class="hljs-comment">// 当是小写字母时为真</span><br><span class="hljs-built_in">isupper</span>(c)  <span class="hljs-comment">// 当是大写字母时为真</span><br><span class="hljs-built_in">isspace</span>(c)  <span class="hljs-comment">// 当是空白（空格、回车、换行、制表符等）时为真</span><br><span class="hljs-built_in">isxdigit</span>(c) <span class="hljs-comment">// 当是16进制数字是为真</span><br><span class="hljs-built_in">ispunct</span>(c)  <span class="hljs-comment">// 当是标点符号时为真（即c不是 控制字符、数字、字母、可打印空白 中的一种）</span><br><span class="hljs-built_in">isprint</span>(c)  <span class="hljs-comment">// 当时可打印字符时为真（即c是空格或具有可见形式）</span><br><span class="hljs-built_in">isgraph</span>(c)  <span class="hljs-comment">// 当不是空格但可打印时为真</span><br><span class="hljs-built_in">iscntrl</span>(c)  <span class="hljs-comment">// 当是控制字符时为真</span><br><span class="hljs-built_in">tolower</span>(c)  <span class="hljs-comment">// 若c是大写字母，转换为小写输出，否则原样输出</span><br><span class="hljs-built_in">toupper</span>(c)  <span class="hljs-comment">// 类似上面的</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">isPalindrome</span><span class="hljs-params">(string s)</span> </span>&#123;<br>        string sgood;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">char</span> ch: s) &#123;<br>            <span class="hljs-keyword">if</span> (<span class="hljs-built_in">isalnum</span>(ch)) &#123;<br>                sgood += <span class="hljs-built_in">tolower</span>(ch);<br>            &#125;<br>        &#125;<br>        <span class="hljs-function">string <span class="hljs-title">sgood_rev</span><span class="hljs-params">(sgood.rbegin(), sgood.rend())</span></span>;<br>        <span class="hljs-keyword">return</span> sgood == sgood_rev;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<h3 id="多数元素">多数元素</h3>
+<p>一维数组是不彳亍的，不仅空间用的多还会超时</p>
+<figure>
+<img src="/images/image-20240311200129691.png" srcset="/img/loading.gif" lazyload
+alt="image-20240311200129691" />
+<figcaption aria-hidden="true">image-20240311200129691</figcaption>
+</figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">majorityElement</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums)</span> </span><br><span class="hljs-function">    </span>&#123;<br>        <span class="hljs-type">int</span> n=nums.<span class="hljs-built_in">size</span>();<br>        <span class="hljs-type">int</span> j=<span class="hljs-number">0</span>,k=<span class="hljs-number">0</span>;<br>        <span class="hljs-type">int</span> a[<span class="hljs-number">100</span>]=&#123;<span class="hljs-number">0</span>&#125;;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;n;i++)<br>        &#123;<br>            a[nums[i]]++;<br>        &#125;<br>        <span class="hljs-type">int</span> max=<span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span>(;j&lt;<span class="hljs-number">100</span>;j++)<br>        &#123;   <br>            <span class="hljs-keyword">if</span>(a[j]&gt;max)<br>                max=a[j],k=j;<br>        &#125;<br>        <span class="hljs-keyword">return</span> k;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">majorityElement</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums)</span> </span><br><span class="hljs-function">    </span>&#123;<br>        map&lt;<span class="hljs-type">int</span>, <span class="hljs-type">int</span>&gt; counts; <span class="hljs-comment">// 使用map来存储元素及其出现次数</span><br>        <span class="hljs-type">int</span> n = nums.<span class="hljs-built_in">size</span>();<br>        <span class="hljs-comment">// 统计每个数字出现的次数</span><br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++) <br>        &#123;<br>            counts[nums[i]]++;<br>        &#125;<br>        <span class="hljs-comment">// 找出多数元素</span><br>        <span class="hljs-function">pair&lt;<span class="hljs-type">int</span>, <span class="hljs-type">int</span>&gt; <span class="hljs-title">majorityElement</span><span class="hljs-params">(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>)</span></span>; <span class="hljs-comment">// 第一个int保存元素值，第二个int保存出现次数</span><br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> &amp;count : counts) <br>        &#123;<br>            <span class="hljs-keyword">if</span> (count.second &gt; n / <span class="hljs-number">2</span>) <br>            &#123;<br>                majorityElement = count;<br>                <span class="hljs-keyword">break</span>; <span class="hljs-comment">// 多数元素定义为超过总数一半的元素，所以可以在找到后直接终止循环</span><br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> majorityElement.first;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<p>我甚至不知道还有map这个二维存储的东西，真是太菜了</p>
+<h3 id="c-中的字符串数组">C ++中的字符串数组</h3>
+<figure>
+<img src="/images/image-20240311201533870.png" srcset="/img/loading.gif" lazyload
+alt="image-20240311201533870" />
+<figcaption aria-hidden="true">image-20240311201533870</figcaption>
+</figure>
+<figure>
+<img src="/images/image-20240311202006704.png" srcset="/img/loading.gif" lazyload
+alt="image-20240311202006704" />
+<figcaption aria-hidden="true">image-20240311202006704</figcaption>
+</figure>
+<figure>
+<img src="/images/image-20240311201954203.png" srcset="/img/loading.gif" lazyload
+alt="image-20240311201954203" />
+<figcaption aria-hidden="true">image-20240311201954203</figcaption>
+</figure>
+<p>作者：力扣官方题解
+链接：https://leetcode.cn/problems/remove-element/solutions/730203/yi-chu-yuan-su-by-leetcode-solution-svxi/
+来源：力扣（LeetCode）
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+<figure>
+<img src="/images/image-20240311203027539.png" srcset="/img/loading.gif" lazyload
+alt="image-20240311203027539" />
+<figcaption aria-hidden="true">image-20240311203027539</figcaption>
+</figure>
+<p>滤波电容</p>
+<figure>
+<img src="/images/image-20240311203944816.png" srcset="/img/loading.gif" lazyload
+alt="image-20240311203944816" />
+<figcaption aria-hidden="true">image-20240311203944816</figcaption>
+</figure>
+<p>复位引脚，默认永久上拉，按下按键低电平复位</p>
+<p>刚上电的时候系统电容没电，引脚接地自动复位一次，电容充满之后上拉正常工作</p>
+<p>电容充电的时候可以当作导线，充满了就成断路了</p>
+<figure>
+<img src="/images/image-20240311204658768.png" srcset="/img/loading.gif" lazyload
+alt="image-20240311204658768" />
+<figcaption aria-hidden="true">image-20240311204658768</figcaption>
+</figure>
+<p>高频8MHz倍频之后72MHz，低频32.768kHz（2的整数次方 ）</p>
+<figure>
+<img src="/images/image-20240311210030212.png" srcset="/img/loading.gif" lazyload
+alt="image-20240311210030212" />
+<figcaption aria-hidden="true">image-20240311210030212</figcaption>
+</figure>
+<figure>
+<img src="/images/image-20240311210047560.png" srcset="/img/loading.gif" lazyload
+alt="image-20240311210047560" />
+<figcaption aria-hidden="true">image-20240311210047560</figcaption>
+</figure>
+<p>滤波电容和外部晶振需要靠近芯片</p>
+<p>线宽可以10</p>
+<p>gnd可以先不连，空余的地方全铺上gnd（铺铜）</p>
+<p>丝印，打槽</p>
+<figure>
+<img src="/images/image-20240311220549604.png" srcset="/img/loading.gif" lazyload
+alt="image-20240311220549604" />
+<figcaption aria-hidden="true">image-20240311220549604</figcaption>
+</figure>
+<p>嗨嗨嗨！明天开始飞线！</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%97%A5%E5%AF%84/" class="category-chain-item">日寄</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>DAY5日寄-数据标注-力扣刷题-PCB布局</div>
+      <div>http://example.com/2024/03/11/DAY5/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>LT</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年3月11日</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2024年3月11日</div>
+        </div>
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/03/10/DAY4/" title="DAY4日寄-毕设电子-java面经">
+                        <span class="hidden-mobile">DAY4日寄-毕设电子-java面经</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.4.16/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"HkXo4YrF9gS9RozMLHhRxbGJ-gzGzoHsz","appKey":"zsnDvCeWpb7b2pwY0DsWlbbj","path":"window.location.pathname","placeholder":"欢迎留下您的评论","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":true,"serverURLs":"https://hkxo4yrf.lc-cn-n1-shared.com","emojiCDN":"https://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/","emojiMaps":null,"enableQQ":true},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      鲁ICP备2022016408号
+    </a>
+  </span>
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

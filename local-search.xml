@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>全方位展示一下我人生中第一块PCB🥹</title>
+    <link href="/2024/03/12/%E5%85%A8%E6%96%B9%E4%BD%8D%E5%B1%95%E7%A4%BA%E4%B8%80%E4%B8%8B%E6%88%91%E4%BA%BA%E7%94%9F%E4%B8%AD%E7%AC%AC%E4%B8%80%E5%9D%97PCB/"/>
+    <url>/2024/03/12/%E5%85%A8%E6%96%B9%E4%BD%8D%E5%B1%95%E7%A4%BA%E4%B8%80%E4%B8%8B%E6%88%91%E4%BA%BA%E7%94%9F%E4%B8%AD%E7%AC%AC%E4%B8%80%E5%9D%97PCB/</url>
+    
+    <content type="html"><![CDATA[<p>以为毕设要做出一个成品来，</p><p>于是认真地把板子大小缩了再缩，最后缩到55mm*66mm，</p><p>这么大点儿空，布线差点儿布emo，</p><p>选的都是贴片类型的元件，全贴在PCB上，甚至还打算加装一个外壳，</p><p>为了缩减成本，选料也选了一阵子，最终缩减到104，</p><p>然后打算SMT的时候发现最少贴俩，材料费200多，加工费400多。</p><p><br></p><p>汗流浃背，问老师咋整，</p><p>——要不我用用咱院里的电焊，买材料回来自己焊？</p><p><br></p><p>老师也汗流浃背，说——</p><p>其实不用做出成品，写在论文里就行。</p><p><br></p><p>最后决定用嵌入式课程发的单片机简单实现一下。</p><p>嵌入式主要感谢这个教程</p><p><ahref="https://www.bilibili.com/video/BV1HH4y1o7EN/?spm_id_from=333.880.my_history.page.click&amp;vd_source=e404ad14246992bcc3e4ac52a33df8ed">小白物联网智能家居毕设参考STM32+ESP8266/MQTT+OneNet+UniApp_哔哩哔哩_bilibili</a></p><p><br></p><p><br></p><p>但我好不容易整出来了，还是得展示一下。</p><p><br></p><h3 id="原理图">原理图</h3><p>右上角是我从嘉立创随便找的开源stm32最小系统板，</p><p><ahref="https://oshwhub.com/dian-xie-eda/stm32f103c8t6">STM32F103C8T6 -嘉立创EDA开源硬件平台 (oshwhub.com)</a></p><p>除了stm32之外的是我自己整的，</p><p>此处感谢这几个教程</p><p><ahref="https://www.bilibili.com/video/BV1fM411Z7cW?p=1&amp;vd_source=e404ad14246992bcc3e4ac52a33df8ed">00-0-课程介绍_哔哩哔哩_bilibili</a></p><p><ahref="https://www.bilibili.com/video/BV13d4y1L7Rg/?spm_id_from=333.788&amp;vd_source=e404ad14246992bcc3e4ac52a33df8ed">带着你从手册开始画板STM最小系统板教程系列(一)_哔哩哔哩_bilibili</a></p><p><ahref="https://www.bilibili.com/video/BV12M4y1N7MZ/?spm_id_from=333.880.my_history.page.click&amp;vd_source=e404ad14246992bcc3e4ac52a33df8ed">09STM32F103C8T6最小系统_哔哩哔哩_bilibili</a></p><figure><img src="/images/image-20240312155432510.png"alt="image-20240312155432510" /><figcaption aria-hidden="true">image-20240312155432510</figcaption></figure><h3 id="pcb布局">PCB布局</h3><p>按模块随便布的</p><figure><img src="/images/Snipaste_2024-03-11_22-05-04.png"alt="Snipaste_2024-03-11_22-05-04" /><figcaption aria-hidden="true">Snipaste_2024-03-11_22-05-04</figcaption></figure><h3 id="飞线">飞线</h3><p>事实上我也不会飞，就是随便来，疯狂过孔，没有什么是过孔解决不了的（</p><figure><img src="/images/Snipaste_2024-03-12_11-30-01.png"alt="Snipaste_2024-03-12_11-30-01" /><figcaption aria-hidden="true">Snipaste_2024-03-12_11-30-01</figcaption></figure><p>这时候就有内味儿了</p><p><img src="/images/Snipaste_2024-03-12_12-08-57.png"alt="Snipaste_2024-03-12_12-08-57" /><imgsrc="/images/Snipaste_2024-03-12_12-15-41.png"alt="Snipaste_2024-03-12_12-15-41" /></p><p>又去听了听教程，然后发现晶振里边走线不太好，紧急修改（</p><figure><img src="/images/Snipaste_2024-03-12_12-28-57.png"alt="Snipaste_2024-03-12_12-28-57" /><figcaption aria-hidden="true">Snipaste_2024-03-12_12-28-57</figcaption></figure><h3 id="覆铜">覆铜</h3><p><del>覆完感觉自己牛得不得了</del></p><figure><img src="/images/Snipaste_2024-03-12_12-48-11.png"alt="Snipaste_2024-03-12_12-48-11" /><figcaption aria-hidden="true">Snipaste_2024-03-12_12-48-11</figcaption></figure><figure><img src="/images/image-20240312160729545.png"alt="image-20240312160729545" /><figcaption aria-hidden="true">image-20240312160729545</figcaption></figure><h3 id="d模型">3D模型</h3><figure><img src="/images/Snipaste_2024-03-12_15-22-45.png"alt="Snipaste_2024-03-12_15-22-45" /><figcaption aria-hidden="true">Snipaste_2024-03-12_15-22-45</figcaption></figure><figure><img src="/images/Snipaste_2024-03-12_15-22-53.png"alt="Snipaste_2024-03-12_15-22-53" /><figcaption aria-hidden="true">Snipaste_2024-03-12_15-22-53</figcaption></figure><h3 id="打样">打样</h3><figure><img src="/images/Snipaste_2024-03-12_15-21-46.png"alt="Snipaste_2024-03-12_15-21-46" /><figcaption aria-hidden="true">Snipaste_2024-03-12_15-21-46</figcaption></figure><figure><img src="/images/Snipaste_2024-03-12_15-21-19.png"alt="Snipaste_2024-03-12_15-21-19" /><figcaption aria-hidden="true">Snipaste_2024-03-12_15-21-19</figcaption></figure><p>最后选的白色，<del>因为感觉白色碉堡了</del></p><h3 id="一些细节图">一些细节图</h3><figure><img src="/images/image-20240312161133819.png"alt="image-20240312161133819" /><figcaption aria-hidden="true">image-20240312161133819</figcaption></figure><figure><img src="/images/image-20240312161149861.png"alt="image-20240312161149861" /><figcaption aria-hidden="true">image-20240312161149861</figcaption></figure><figure><img src="/images/image-20240312161240286.png"alt="image-20240312161240286" /><figcaption aria-hidden="true">image-20240312161240286</figcaption></figure><p>结语：</p><p>虽然我连电路模电都没学过，但感觉当个layout工程师也挺好的....连线的时候感觉好治愈哦🥹</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>嵌入式</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>DAY5日寄-数据标注-力扣刷题-PCB布局</title>
     <link href="/2024/03/11/DAY5/"/>
     <url>/2024/03/11/DAY5/</url>

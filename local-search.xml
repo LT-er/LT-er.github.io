@@ -4,6 +4,44 @@
   
   
   <entry>
+    <title>DAY7日寄-嵌入式</title>
+    <link href="/2024/03/13/DAY7/"/>
+    <url>/2024/03/13/DAY7/</url>
+    
+    <content type="html"><![CDATA[<p>逛了好久jlc开源广场，感觉啥都好玩，啥都想做</p><p>已经下单了板子了的（感谢让我白嫖券的两位舍友）</p><p>1.<ahref="https://oshwhub.com/Pluto_1/STM32F103C8T6zui-xiao-ji-tong">STM32F103C8T6最小系统- 嘉立创EDA开源硬件平台 (oshwhub.com)</a></p><p>我其实想要长条形的那种最小系统板，但看了几个都说有缺陷，最后选的这个方形的</p><p>2.<a href="https://oshwhub.com/yuan0o0/hu-hao-pai">业余无线电呼号牌 -嘉立创EDA开源硬件平台 (oshwhub.com)</a></p><figure><img src="/images/Snipaste_2024-03-13_16-37-42.png"alt="Snipaste_2024-03-13_16-37-42" /><figcaption aria-hidden="true">Snipaste_2024-03-13_16-37-42</figcaption></figure><p>沉金工艺好美，可惜只有焊锡的免费</p><p>呼号是随便找的艺术字体生成透明图片导入。</p><p>3.<a href="https://oshwhub.com/c7h10n2/ukiyoe">神奈川冲浪里 -嘉立创EDA开源硬件平台 (oshwhub.com)</a></p><p>4.<a href="https://oshwhub.com/sytnocui/star-pcb-drawing">梵高星空PCB- 嘉立创EDA开源硬件平台 (oshwhub.com)</a></p><p>5.我自己画的那个全是需要自己焊上去的板子</p><p>6.后来又画了个不需要任何焊接只需要买插脚插上成品元件的板子，增加容错</p><p>等有空想做的，</p><p><ahref="https://oshwhub.com/no_chicken/zhi-neng-shou-biao-OV-Watch_V2.2">智能手表OV-Watch- 嘉立创EDA开源硬件平台 (oshwhub.com)</a></p><p><ahref="https://oshwhub.com/ku-dian-ke-ji-guan/kai-yuan-si-zhou-fei-xing-qi">【开源】STM32四轴飞行器-旧版- 嘉立创EDA开源硬件平台 (oshwhub.com)</a></p><h3 id="普中准端玄武f103">普中准端玄武f103</h3><figure><img src="http://www.prechin.cn/uploadfile/201023/1-2010231H353M0.jpg"alt="img" /><figcaption aria-hidden="true">img</figcaption></figure><figure><img src="http://www.prechin.cn/uploadfile/201023/1-2010231H321403.jpg"alt="img" /><figcaption aria-hidden="true">img</figcaption></figure><p>毕设虽然不用做出成品了，但还是要做出来实验品，用嵌入式课发的开发板做，实际上去年已经做出来半成品了</p><p>嵌入式发的这个板子上不知道有没有mos管，提供不了DC12V，实在不行我就不用电磁阀了，只用霍尔流量计</p><p>梳理一下启动流程</p><h3id="板子上电之后装ch340的驱动usb转串口">板子上电之后装CH340的驱动，USB转串口，</h3><p>CH340是一款常用的USB转串口芯片，其功能和其他类似芯片（如FTDI的FT232、SiliconLabs的CP2102等）一样，用于把USB信号转换成TTL串行通讯信号，从而实现单片机与电脑之间的通讯。</p><p>CH340芯片因其成本效益高被广泛使用在各种单片机开发板和大量的USB转串口适配器中。它支持标准的串行通信协议，并且可以直接连接到单片机的RX（接收）和TX（发送）引脚上进行数据传输。</p><p>使用CH340的单片机开发板通常通过micro-USB或mini-USB与电脑相连。当接上电脑的USB接口后，需要在电脑上安装相应的驱动程序以识别该设备。一旦设备被成功识别，就可以通过串行端口（COM端口）与单片机进行通信了，这对于加载程序代码、调试以及其他串口通讯任务都是必须的步骤。</p><p>CH340芯片本身是设计用于USB全尺寸和微型连接器的，但并不限制于那些连接器。Type-C是一种USB连接器的形式，并不强制要求使用与之配对的特定USB控制器芯片。因此，使用CH340芯片来实现Type-C转串口是可行的，关键在于正确地设计电路和物理适配器。</p><p>创建一个Type-C转串口的适配器时，主要在于设计一个带有Type-C接口的PCB，并确保CH340芯片与Type-C接口的USB数据线（D+和D-）正确相连。您需要按照USBType-C标准来设计PCB，以适配Type-C连接器的引脚配置。同时，由于Type-C接口能够反转插拔，您可能需要考虑集成CC（通信通道）逻辑，以识别插头的方向并相应地配置USB数据线的连接。</p><h3 id="仿真器">仿真器</h3><p>JTAG接口是一种通用的硬件调试和编程接口，常用于单片机和其他嵌入式设备的调试和测试。它通过几根引脚连接到单片机上，提供了对芯片内部的调试和编程功能。</p><p>以下是使用JTAG接口的基本步骤：</p><ol type="1"><li>硬件连接：首先，将JTAG调试器与单片机正确连接。通常，JTAG调试器会提供一根平行线缆或者插座，其中的针脚对应着单片机上的相应引脚。确保连接正确，并检查连接的引脚是否与单片机的JTAG引脚兼容。</li><li>调试软件：安装适用于您的单片机的JTAG调试软件。常见的JTAG调试软件包括Keil、IAR等。确保选择与您的单片机芯片兼容的软件。</li><li>配置目标设备：在调试软件中配置目标设备的参数，例如芯片型号、JTAG引脚映射等。这些信息可以在单片机的数据手册中找到。</li><li>连接到目标设备：启动调试软件，并连接到目标设备。通常，软件会自动检测到连接的JTAG调试器和目标设备。</li><li>调试操作：一旦成功连接到目标设备，您可以执行各种调试操作，例如单步调试、读取/写入寄存器、设置断点等。这些操作将帮助您分析和调试单片机程序。</li></ol><p>需要注意的是，具体的操作步骤和软件界面可能因不同的单片机和调试软件而有所差异。在使用JTAG接口进行调试之前，最好仔细阅读单片机和调试软件的相关文档，并遵循其指导。</p><p><a href="https://www.docin.com/p-1860549827.html">普中ARM仿真器使用 -豆丁网 (docin.com)</a></p><p>一般情况下，使用 JTAG接口烧录程序到目标设备后，并不需要重新上电。JTAG接口通过调试器与目标设备进行通信和控制，可以在不断电的情况下对目标设备进行编程和调试。</p><p>在使用 JTAG接口进行程序烧录时，您可以直接通过调试软件将程序下载到目标设备的内部存储器中，而无需重新上电。一旦程序下载完成，您可以通过调试软件发出复位命令，以使目标设备重新启动并开始执行新烧录的程序。</p><p>总的来说，使用 JTAG接口进行程序烧录后，通常不需要手动重新上电。您可以通过调试软件控制目标设备的复位和启动，使新烧录的程序得以执行。这种方式可以提高编程效率，并减少了因频繁上电而可能引起的不便。</p><h3id="没装putty直接用普中给的pz-isp串口调试">没装Putty，直接用普中给的PZ-ISP串口调试</h3><ol type="1"><li><strong>数据传输速率</strong>：波特率越高，单位时间内传输的数据量就越大，传输速率也就越快。因此，在需要快速传输数据的情况下，可以选择较高的波特率。</li><li><strong>通信稳定性</strong>：选择适当的波特率可以提高通信的稳定性。如果波特率设置不正确，可能会导致数据传输错误或无法正常通信。</li></ol><h3id="如何检查启动配置确保设备配置为从flash启动">如何检查启动配置，确保设备配置为从Flash启动</h3><ol type="1"><li><strong>启动模式针脚</strong>：大多数MCU（微控制器单元）有专门的启动模式引脚，用于选择启动模式。这些针脚在上电时读取其电平状态，以确定是从Flash、外部内存或特殊的引导加载器启动。请参考你的MCU的数据手册，检查相应的启动模式针脚是否已经配置为从内部Flash启动。</li><li><strong>启动配置寄存器</strong>：某些MCU允许通过某个配置寄存器来设置启动模式。通常在编程期间或之后进行设置，这样在复位后硬件就会根据这个寄存器的配置选择启动模式。请检查MCU的配置设置是否正确。</li><li><strong>启动加载器（Bootloader）</strong>：如果你的系统使用了启动加载器，确保启动加载器是用来从Flash启动应用程序的。在某些情况下，启动加载器可能需要更新或配置以启用从Flash的启动。</li><li><strong>程序入口点</strong>：确保你的应用程序的链接脚本中的入口点指向了正确的Flash地址，这对于程序能够正确执行是至关重要的。</li><li><strong>Linker脚本/散点加载文件</strong>：在编译之前，链接器脚本或者ARM的散点加载文件需要正确设置，以保证代码和数据被放在正确的Flash内存中的位置。如果设置错误，程序可能无法在启动时被正确定位和执行。</li><li><strong>Keil设置</strong>：在Keil MDK-ARM中，进入“Options forTarget”对话框的"Debug"选项卡，确保在"Settings"部分适当地选择了调试器，并且在"Flash"标签中选择了正确的Flash算法和配置。</li><li><strong>调试信息</strong>：在使用Keil的调试模式时，可以观察MCU的内存和寄存器，检查应用程序是否被加载到预期的Flash区域，以及程序计数器（PC）是否指向正确的入口地址。</li><li><strong>文档和工具</strong>：利用MCU生产商提供的文档和工具，例如STM32的STM32CubeProgrammer或NXP的MCUXpressoSecure Provisioning Tools，这些都可能在确保Flash启动方面提供帮助。</li></ol>]]></content>
+    
+    
+    <categories>
+      
+      <category>日寄</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>DAY6</title>
+    <link href="/2024/03/12/DAY6/"/>
+    <url>/2024/03/12/DAY6/</url>
+    
+    <content type="html"><![CDATA[<p>飞了一上午的线，下午嘉立创打板，累累的。</p><p>C++的STL（标准模板库 Standard TemplateLibrary）是C++语言的一个非常强大的功能库，由一系列的通用的模板类和函数组成，提供了常见的数据结构和算法。STL是C++的核心组件之一，自C++98标准起就被包含在内。</p><p>STL主要包含以下四个组件：</p><ol type="1"><li><strong>容器（Containers）</strong>：容器是用来管理某一类对象集合的通用数据结构。STL提供了多种不同类型的容器，比如序列容器（如vector、list、deque）、关联容器（如set、multiset、map、multimap）以及容器适配器（如stack、queue、priority_queue）。</li><li><strong>算法（Algorithms）</strong>：STL算法是作用于容器上的一系列模板函数，用来进行如排序、搜索、变换和其他计算等操作。这些算法通常与容器解耦，通过迭代器来遍历容器中的元素。</li><li><strong>迭代器（Iterators）</strong>：迭代器是一种类似于指针的对象，用于遍历容器中的元素。迭代器抽象了访问容器中元素的方式，使得算法能够独立于它们操作的数据结构类型进行工作。</li><li><strong>函数对象（Functionobjects，也称为functors）</strong>：函数对象是重载了函数调用操作符<code>()</code>的对象。它们可以作为算法的泛型参数，允许使用者自定义某些操作，如定义排序准则。</li></ol><p>STL的设计充分发挥了模板的优势，使得它非常灵活高效。通过模板，STL能够与任意类型的元素一起工作，并且能够实现编译时多态（而非传统的运行时多态）。这意味着STL代码在编译时实例化，并且对于不同的数据类型不会有性能损失。</p><p>总而言之，STL通过上述组件为C++程序员提供了一套强大且灵活的工具集，用于处理数据和算法，极大地提升了编程的效率和程序的性能。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>日寄</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>全方位展示一下我人生中第一块PCB🥹</title>
     <link href="/2024/03/12/%E5%85%A8%E6%96%B9%E4%BD%8D%E5%B1%95%E7%A4%BA%E4%B8%80%E4%B8%8B%E6%88%91%E4%BA%BA%E7%94%9F%E4%B8%AD%E7%AC%AC%E4%B8%80%E5%9D%97PCB/"/>
     <url>/2024/03/12/%E5%85%A8%E6%96%B9%E4%BD%8D%E5%B1%95%E7%A4%BA%E4%B8%80%E4%B8%8B%E6%88%91%E4%BA%BA%E7%94%9F%E4%B8%AD%E7%AC%AC%E4%B8%80%E5%9D%97PCB/</url>

@@ -18,18 +18,18 @@
   <meta name="author" content="LT">
   <meta name="keywords" content="">
   
-    <meta name="description" content="解释一下这一句regex &#x3D; r&#39;![.?]((.?))&#39; 这个正则表达式是用来匹配Markdown文档中图片链接格式的。 让我们逐步分解一下这个正则表达式：  !: 在Markdown中，图片链接是以感叹号!开头的，所以正则表达式首先会查找感叹号。 [&#96;: 紧跟着感叹号的是一个左方括号&#96;[&#96;，在正则表达式中方括号是一个特殊字符，用于定义字符集（character class）。因此">
+    <meta name="description" content="regex &#x3D; r&#39;![.?]((.?))&#39; 这个正则表达式是用来匹配Markdown文档中图片链接格式的。 让我们逐步分解一下这个正则表达式：  !: 在Markdown中，图片链接是以感叹号!开头的，所以正则表达式首先会查找感叹号。 [&#96;: 紧跟着感叹号的是一个左方括号&#96;[&#96;，在正则表达式中方括号是一个特殊字符，用于定义字符集（character class）。因此，我们需要使用反">
 <meta property="og:type" content="article">
 <meta property="og:title" content="配置博客自动改图片路径和自动剪切图片的尝试">
 <meta property="og:url" content="http://example.com/2024/03/09/try/index.html">
 <meta property="og:site_name" content="LTSpace">
-<meta property="og:description" content="解释一下这一句regex &#x3D; r&#39;![.?]((.?))&#39; 这个正则表达式是用来匹配Markdown文档中图片链接格式的。 让我们逐步分解一下这个正则表达式：  !: 在Markdown中，图片链接是以感叹号!开头的，所以正则表达式首先会查找感叹号。 [&#96;: 紧跟着感叹号的是一个左方括号&#96;[&#96;，在正则表达式中方括号是一个特殊字符，用于定义字符集（character class）。因此">
+<meta property="og:description" content="regex &#x3D; r&#39;![.?]((.?))&#39; 这个正则表达式是用来匹配Markdown文档中图片链接格式的。 让我们逐步分解一下这个正则表达式：  !: 在Markdown中，图片链接是以感叹号!开头的，所以正则表达式首先会查找感叹号。 [&#96;: 紧跟着感叹号的是一个左方括号&#96;[&#96;，在正则表达式中方括号是一个特殊字符，用于定义字符集（character class）。因此，我们需要使用反">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/images/image-20240309112717007.png">
 <meta property="og:image" content="http://example.com/images/image-20240309114430069.png">
 <meta property="og:image" content="http://example.com/images/image-20240309114453958.png">
 <meta property="article:published_time" content="2024-03-09T08:20:59.000Z">
-<meta property="article:modified_time" content="2024-03-10T14:32:44.990Z">
+<meta property="article:modified_time" content="2024-03-15T06:13:28.072Z">
 <meta property="article:author" content="LT">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://example.com/images/image-20240309112717007.png">
@@ -228,7 +228,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.2k 字
+          3.1k 字
         
       </span>
     
@@ -239,7 +239,7 @@
         
         
         
-          27 分钟
+          26 分钟
         
       </span>
     
@@ -281,8 +281,7 @@
             
               <div class="markdown-body">
                 
-                <h3 id="解释一下这一句regex-r..">解释一下这一句regex =
-r'![.<em>?]((.</em>?))'</h3>
+                <h3 id="regex-r..">regex = r'![.<em>?]((.</em>?))'</h3>
 <p>这个正则表达式是用来匹配Markdown文档中图片链接格式的。</p>
 <p>让我们逐步分解一下这个正则表达式：</p>
 <ul>
@@ -308,7 +307,7 @@ r'![.<em>?]((.</em>?))'</h3>
 </ul>
 <p>综上所述，正则表达式<code>r'!\[.*?\]\((.*?)\)'</code>整体查找的是一个标记了图片图像且不包含换行符的Markdown链接，它匹配以<code>![]</code>开始，紧跟一个括号内含任意字符（非贪婪匹配）的字符串。括号内的匹配部分（即图片的URL路径）被捕获以便之后使用。</p>
 <h3
-id="我每次上传博客md文件和图像的话是需要g还是d">我每次上传博客md文件和图像的话是需要g还是d</h3>
+id="每次上传博客md文件和图像需要g还是d">每次上传博客md文件和图像需要g还是d</h3>
 <p>当你上传博客的Markdown文件和图像后，通常你需要先执行<code>hexo generate</code>（或其简写<code>hexo g</code>）来生成最新的静态文件，然后执行<code>hexo deploy</code>（或其简写<code>hexo d</code>）将这些静态文件部署到服务器上。</p>
 <p>具体步骤通常是这样的：</p>
 <ol type="1">
@@ -339,7 +338,7 @@ up-to-date branch 'master' set up to track
 </ul>
 <p>如果上述都没问题，你可以尝试删除<code>pre-commit</code>钩子并重新创建它。如果错误仍然存在，那么需要对你的Git安装和配置环境做更深入的查看。在极端情况下，你可能需要重新安装Git或者调查是否有其它系统级的问题影响到了Git钩子的执行。</p>
 <h3
-id="我的git仓库里.git的名字是.deploy_git是这个的原因吗">我的git仓库里.git的名字是.deploy_git，是这个的原因吗</h3>
+id="git仓库里.git的名字是.deploy_git">git仓库里.git的名字是.deploy_git</h3>
 <p>如果你的 <code>.git</code> 文件夹的名字被改为了
 <code>.deploy_git</code>，那很有可能是使用了Hexo的部署机制，特别是当采用<code>hexo-deployer-git</code>插件时，它会创建一个<code>.deploy_git</code>目录用来作为Git部署仓库。这个目录用于存储生成的静态文件，并将其推送到远程仓库，比如GitHub
 Pages。</p>
@@ -352,8 +351,7 @@ Pages。</p>
 </ol>
 <p>如果你尝试修改你的源代码并提交（例如使用<code>git commit</code>命令），那么钩子脚本应该在你项目的<code>.git/hooks</code>目录中被触发。如果你仅仅使用<code>hexo deploy</code>命令部署网站，它是不会触发这个钩子的，因为这通常会直接向<code>.deploy_git</code>仓库提交。</p>
 <h3
-id="我发现我的.depoly_git里还有一个.git文件夹-这个文件夹又是干什么的">我发现我的.depoly_git里还有一个.git文件夹
-这个文件夹又是干什么的</h3>
+id="depoly_git里还有一个.git文件夹">.depoly_git里还有一个.git文件夹</h3>
 <p>在Hexo项目中，<code>.deploy_git</code>文件夹是用于存储Hexo生成的静态文件以便部署到远程服务器的地方。当你使用<code>hexo-deployer-git</code>插件进行部署时，Hexo会将<code>public</code>目录中生成的静态文件复制到<code>.deploy_git</code>目录，并在该目录初始化一个新的Git仓库用于部署。</p>
 <p><code>.deploy_git</code>目录中的<code>.git</code>文件夹是这个用于部署的Git仓库的元数据存储位置，其中包含了版本控制的相关信息，如分支、提交历史、配置等。实际上，<code>.deploy_git</code>目录本身就像是一个完整的Git仓库。</p>
 <p>当你执行<code>hexo deploy</code>命令时，以下步骤会被触发：</p>
@@ -370,9 +368,8 @@ Pages或其他托管服务）。</li>
 alt="image-20240309112717007" />
 <figcaption aria-hidden="true">image-20240309112717007</figcaption>
 </figure>
-<h3
-id="我还需要额外再执行一遍git-commit的命令吗有没有方法让我只执行hexo-g--d">我还需要额外再执行一遍git
-commit的命令吗，有没有方法让我只执行hexo g -d</h3>
+<h3 id="额外再执行一遍git-commit的命令只执行hexo-g--d">额外再执行一遍git
+commit的命令，只执行hexo g -d</h3>
 <p>如果要在执行 <code>hexo g -d</code> 的同时确保
 <code>pre-commit</code> 钩子被触发，你需要理解 <code>git commit</code>
 和 <code>hexo g -d</code> 在工作流程上的不同：</p>
@@ -394,8 +391,8 @@ alt="image-20240309114453958" />
 <figcaption aria-hidden="true">image-20240309114453958</figcaption>
 </figure>
 <h3
-id="那我能不能把钩子放到.deploy_git的.git里这样就能hexo-g--d-的时候直接执行钩子了">那我能不能把钩子放到.deploy_git的.git里，这样就能hexo
-g -d 的时候直接执行钩子了</h3>
+id="把钩子放到.deploy_git的.git里hexo-g--d-直接执行钩子">把钩子放到.deploy_git的.git里，hexo
+g -d 直接执行钩子</h3>
 <p>理论上，你可以将钩子脚本放在 <code>.deploy_git/.git/hooks</code>
 里面。因为这个 <code>.git</code>
 目录确实是一个git仓库，所以它应该能认可钩子脚本。但这样做有一些需要考虑的地方：</p>
@@ -476,7 +473,7 @@ id="以下是将图片移动和替换绝对路径为相对路径的功能合并�
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2024年3月10日</div>
+          <div>2024年3月15日</div>
         </div>
       
       

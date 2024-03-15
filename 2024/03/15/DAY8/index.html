@@ -18,21 +18,26 @@
   <meta name="author" content="LT">
   <meta name="keywords" content="">
   
-    <meta property="og:type" content="article">
-<meta property="og:title" content="DAY8">
+    <meta name="description" content="前几天路线不对，目前最紧要的是把会的东西记起来。  真是唯见月寒日暖，来煎人寿。  计组复习 运算器 存储器 控制器 输入设备 输出设备 MAR 地址寄存器 存储单元数量 在CPU里，未集成到运算器和控制器之中 MDR 数据寄存器 存储单元字长 PC-MAR-M-MDR-IR OP(IR)-CU AD(IR)-MAD-M-MDR-ACC 预处理-编译-汇编-链接 OF SF">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DAY8-CO复习">
 <meta property="og:url" content="http://example.com/2024/03/15/DAY8/index.html">
 <meta property="og:site_name" content="LTSpace">
+<meta property="og:description" content="前几天路线不对，目前最紧要的是把会的东西记起来。  真是唯见月寒日暖，来煎人寿。  计组复习 运算器 存储器 控制器 输入设备 输出设备 MAR 地址寄存器 存储单元数量 在CPU里，未集成到运算器和控制器之中 MDR 数据寄存器 存储单元字长 PC-MAR-M-MDR-IR OP(IR)-CU AD(IR)-MAD-M-MDR-ACC 预处理-编译-汇编-链接 OF SF">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/images/9d8b09a57a94e09f46ee79c6d3193221.jpg">
+<meta property="og:image" content="http://example.com/images/848021f1de1647992b095a85a5d3bf03.jpg">
 <meta property="article:published_time" content="2024-03-15T06:14:06.000Z">
-<meta property="article:modified_time" content="2024-03-15T06:14:06.272Z">
+<meta property="article:modified_time" content="2024-03-15T13:52:23.363Z">
 <meta property="article:author" content="LT">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/images/9d8b09a57a94e09f46ee79c6d3193221.jpg">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>DAY8 - LTSpace</title>
+  <title>DAY8-CO复习 - LTSpace</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -199,7 +204,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle">DAY8</span>
+            <span id="subtitle">DAY8-CO复习</span>
           
         </div>
 
@@ -222,7 +227,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          0 字
+          355 字
         
       </span>
     
@@ -233,7 +238,7 @@
         
         
         
-          1 分钟
+          3 分钟
         
       </span>
     
@@ -270,12 +275,59 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">DAY8</h1>
+            <h1 id="seo-header">DAY8-CO复习</h1>
             
             
               <div class="markdown-body">
                 
-                
+                <p>前几天路线不对，目前最紧要的是把会的东西记起来。</p>
+<p><br></p>
+<p>真是唯见月寒日暖，来煎人寿。</p>
+<hr />
+<h3 id="计组复习">计组复习</h3>
+<p>运算器 存储器 控制器 输入设备 输出设备</p>
+<p>MAR 地址寄存器 存储单元数量 在CPU里，未集成到运算器和控制器之中</p>
+<p>MDR 数据寄存器 存储单元字长</p>
+<p>PC-MAR-M-MDR-IR</p>
+<p>OP(IR)-CU</p>
+<p>AD(IR)-MAD-M-MDR-ACC</p>
+<p>预处理-编译-汇编-链接</p>
+<p>OF SF （有） ZF CF （无）</p>
+<p>大端阅读，小端机器处理</p>
+<p>IEEE754 单精1符号8阶码23尾数 移码E-127</p>
+<p>Cache SRAM 主存 DRAM</p>
+<p>Flash 固态SSD ROM</p>
+<p>高位交叉编址-高位体号，低位体内</p>
+<p>低位相反，连续存储m个字t=T+（m-1）r</p>
+<p>交叉模块数：m=T/r</p>
+<p>位扩展：地址，片选，读写控制并联，数据端引出</p>
+<p>字扩展：地址，数据，控制并联，片选信号区分</p>
+<p>线选法，译码片选法</p>
+<p>驱动器号，柱面/磁道号，盘面号，扇区号</p>
+<p>Cache和主存的映射方式</p>
+<p><strong>直接</strong></p>
+<p>Cache行号=主存块号 mod Cache总行数</p>
+<p>地址结构：标记 cache行号 块内地址</p>
+<p>根据行号找到对应的cache行 标记比较 命中存取信息</p>
+<p><strong>全相联</strong></p>
+<p>地址结构：标记 块内地址</p>
+<p><strong>组相联</strong></p>
+<p>Cache组号=主存块号 mod Cache组数（Q）</p>
+<hr />
+<p>晚上一直在看沧浪之水</p>
+<p>这铅笔哥在书上写字不太好，但是标画的地方确实都还行</p>
+<figure>
+<img src="/images/9d8b09a57a94e09f46ee79c6d3193221.jpg" srcset="/img/loading.gif" lazyload
+alt="9d8b09a57a94e09f46ee79c6d3193221" />
+<figcaption
+aria-hidden="true">9d8b09a57a94e09f46ee79c6d3193221</figcaption>
+</figure>
+<figure>
+<img src="/images/848021f1de1647992b095a85a5d3bf03.jpg" srcset="/img/loading.gif" lazyload
+alt="848021f1de1647992b095a85a5d3bf03" />
+<figcaption
+aria-hidden="true">848021f1de1647992b095a85a5d3bf03</figcaption>
+</figure>
 
                 
               </div>
@@ -283,6 +335,27 @@
             <hr/>
             <div>
               <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%97%A5%E5%AF%84/" class="category-chain-item">日寄</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
   
   
 </div>
@@ -293,7 +366,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>DAY8</div>
+      <div>DAY8-CO复习</div>
       <div>http://example.com/2024/03/15/DAY8/</div>
     </div>
     <div class="license-meta">

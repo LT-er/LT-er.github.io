@@ -18,19 +18,23 @@
   <meta name="author" content="LT">
   <meta name="keywords" content="">
   
-    <meta name="description" content="一天速做CV-CNN毕设 题目是工件毛刺图像采集与分类方法研究，代码和处理过的数据放到github了 ltspace&#x2F;CNNGraduationProject (github.com)  3-23更新： 不死心，又来来回回用各种方法尝试GAN生成， 256依然是噪声，学不了一点儿， 64的能学， 后来训练的时候经常在第50或者第63epoch卡住， 寻思着是不是内存泄漏？算力不">
+    <meta name="description" content="一天速做CV-CNN毕设 题目是工件毛刺图像采集与分类方法研究，代码和处理过的数据放到github了 ltspace&#x2F;CNNGraduationProject (github.com)  3-23更新： 不死心，又来来回回用各种方法尝试GAN生成， 256依然是噪声，学不了一点儿， 64的能学，但不太像， 尝试增加到500epoch，但后来训练的时候经常在第50或者第63epoc">
 <meta property="og:type" content="article">
 <meta property="og:title" content="一天速做CNN毕设">
 <meta property="og:url" content="http://example.com/2024/03/21/CNNGraduationProject/index.html">
 <meta property="og:site_name" content="LTSpace">
-<meta property="og:description" content="一天速做CV-CNN毕设 题目是工件毛刺图像采集与分类方法研究，代码和处理过的数据放到github了 ltspace&#x2F;CNNGraduationProject (github.com)  3-23更新： 不死心，又来来回回用各种方法尝试GAN生成， 256依然是噪声，学不了一点儿， 64的能学， 后来训练的时候经常在第50或者第63epoch卡住， 寻思着是不是内存泄漏？算力不">
+<meta property="og:description" content="一天速做CV-CNN毕设 题目是工件毛刺图像采集与分类方法研究，代码和处理过的数据放到github了 ltspace&#x2F;CNNGraduationProject (github.com)  3-23更新： 不死心，又来来回回用各种方法尝试GAN生成， 256依然是噪声，学不了一点儿， 64的能学，但不太像， 尝试增加到500epoch，但后来训练的时候经常在第50或者第63epoc">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/images/cbe05efe530bdf39f009d6529b68e1da.png">
+<meta property="og:image" content="http://example.com/images/Snipaste_2024-03-22_20-09-56.png">
+<meta property="og:image" content="http://example.com/images/Snipaste_2024-03-22_20-09-26.png">
 <meta property="og:image" content="http://example.com/images/image-20240321235559628.png">
 <meta property="og:image" content="http://example.com/images/Snipaste_2024-03-21_17-06-35.png">
 <meta property="og:image" content="http://example.com/images/Snipaste_2024-03-21_20-10-21.png">
+<meta property="og:image" content="http://example.com/images/Snipaste_2024-03-22_21-42-24.png">
+<meta property="og:image" content="http://example.com/images/Snipaste_2024-03-22_21-42-29.png">
 <meta property="article:published_time" content="2024-03-21T15:49:13.000Z">
-<meta property="article:modified_time" content="2024-03-23T12:45:56.149Z">
+<meta property="article:modified_time" content="2024-03-23T12:56:08.263Z">
 <meta property="article:author" content="LT">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://example.com/images/cbe05efe530bdf39f009d6529b68e1da.png">
@@ -229,7 +233,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1k 字
+          1.2k 字
         
       </span>
     
@@ -240,7 +244,7 @@
         
         
         
-          9 分钟
+          10 分钟
         
       </span>
     
@@ -291,18 +295,34 @@ target="_blank" rel="noopener" href="https://github.com/ltspace/CNNGraduationPro
 <p>3-23更新：</p>
 <p>不死心，又来来回回用各种方法尝试GAN生成，</p>
 <p>256依然是噪声，学不了一点儿，</p>
-<p>64的能学，</p>
-<p>后来训练的时候经常在第50或者第63epoch卡住，</p>
+<p>64的能学，但不太像，</p>
+<p>尝试增加到500epoch，但后来训练的时候经常在第50或者第63epoch卡住，</p>
 <p>寻思着是不是内存泄漏？算力不够？</p>
 <p>但是开了任务管理器一看，一切又都正常，</p>
-<p>邪门儿了。</p>
+<p>邪门儿，遂放弃</p>
 <figure>
 <img src="/images/cbe05efe530bdf39f009d6529b68e1da.png" srcset="/img/loading.gif" lazyload
 alt="cbe05efe530bdf39f009d6529b68e1da" />
 <figcaption
 aria-hidden="true">cbe05efe530bdf39f009d6529b68e1da</figcaption>
 </figure>
-<p>人都说DCGAN好用，但训练起来咋啷个难？</p>
+<p>都说DCGAN好用，但训练起来好难</p>
+<hr />
+<p>3-22更新：</p>
+<p>细想了一下，分为两类工件，每类分为有无毛刺，有点儿脱trousers放pee</p>
+<p>尝试一个模型同时判断两类工件有没有毛刺</p>
+<p>放一个文件夹，随机打乱，再重新标注了一遍，然后把拼接拉伸的那些连我自己都看不出来有没有毛刺的数据删了</p>
+<p>最后结果还行</p>
+<figure>
+<img src="/images/Snipaste_2024-03-22_20-09-56.png" srcset="/img/loading.gif" lazyload
+alt="Snipaste_2024-03-22_20-09-56" />
+<figcaption aria-hidden="true">Snipaste_2024-03-22_20-09-56</figcaption>
+</figure>
+<figure>
+<img src="/images/Snipaste_2024-03-22_20-09-26.png" srcset="/img/loading.gif" lazyload
+alt="Snipaste_2024-03-22_20-09-26" />
+<figcaption aria-hidden="true">Snipaste_2024-03-22_20-09-26</figcaption>
+</figure>
 <hr />
 <p>寒假前去实验室用工业照相机给几种工件拍了照，</p>
 <p>这就是图像采集部分了吧（什），感觉样本数量本身挺少的，拍照拍不出个花来，</p>
@@ -361,7 +381,18 @@ alt="Snipaste_2024-03-21_17-06-35" />
 alt="Snipaste_2024-03-21_20-10-21" />
 <figcaption aria-hidden="true">Snipaste_2024-03-21_20-10-21</figcaption>
 </figure>
-<p>收敛了</p>
+<hr />
+<p>近日阅片有感</p>
+<figure>
+<img src="/images/Snipaste_2024-03-22_21-42-24.png" srcset="/img/loading.gif" lazyload
+alt="Snipaste_2024-03-22_21-42-24" />
+<figcaption aria-hidden="true">Snipaste_2024-03-22_21-42-24</figcaption>
+</figure>
+<figure>
+<img src="/images/Snipaste_2024-03-22_21-42-29.png" srcset="/img/loading.gif" lazyload
+alt="Snipaste_2024-03-22_21-42-29" />
+<figcaption aria-hidden="true">Snipaste_2024-03-22_21-42-29</figcaption>
+</figure>
 
                 
               </div>
